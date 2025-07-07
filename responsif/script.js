@@ -1,17 +1,17 @@
-const jumlahInput = document.getElementById("jumlah");
-const kategoriInput = document.getElementById("kategori");
-const totalOutput = document.getElementById("total");
+document.addEventListener("DOMContentLoaded", () => {
+  const jumlah = document.getElementById("jumlah");
+  const kategori = document.getElementById("kategori");
+  const total = document.getElementById("total");
 
-function hitungTotal() {
-    const jumlah = parseInt(jumlahInput.value);
-    const kategori = kategoriInput.value;
-    let hargaPerTiket = kategori === "dewasa" ? 50000 : 25000;
-    const total = jumlah * hargaPerTiket;
-    totalOutput.value = "Rp" + total.toLocaleString("id-ID");
-}
+  function hitungTotal() {
+    const jumlahTiket = parseInt(jumlah.value);
+    const harga = kategori.value === "dewasa" ? 50000 : 25000;
+    total.value = "Rp" + (jumlahTiket * harga).toLocaleString("id-ID");
+  }
 
-jumlahInput.addEventListener("input", hitungTotal);
-kategoriInput.addEventListener("change", hitungTotal);
+  jumlah.addEventListener("input", hitungTotal);
+  kategori.addEventListener("change", hitungTotal);
 
-// Jalankan saat pertama kali
-document.addEventListener("DOMContentLoaded", hitungTotal);
+  // Hitung otomatis saat halaman dimuat
+  hitungTotal();
+});
